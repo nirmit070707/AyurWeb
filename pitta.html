@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pitta Dosha - The Energy of Transformation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #fdf8f3 0%, #f4e6d7 50%, #f8f1e8 100%);
+            color: #6b4423;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .fire-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(218, 165, 32, 0.15) 0%, rgba(255, 140, 0, 0.1) 50%, rgba(255, 69, 0, 0.05) 70%, transparent 100%);
+            animation: flicker 8s infinite ease-in-out;
+        }
+
+        .water-particle {
+            position: absolute;
+            background: rgba(70, 130, 180, 0.08);
+            border-radius: 50%;
+            animation: flow 25s infinite linear;
+        }
+
+        .heat-wave {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, rgba(255, 140, 0, 0.3) 30%, rgba(218, 165, 32, 0.4) 50%, rgba(255, 69, 0, 0.3) 70%, transparent 100%);
+            animation: shimmer 10s infinite ease-in-out;
+            border-radius: 2px;
+        }
+
+        .energy-pulse {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 165, 0, 0.1) 0%, transparent 70%);
+            animation: pulse 15s infinite ease-in-out;
+        }
+
+        @keyframes flicker {
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.3; }
+            25% { transform: translateY(-20px) scale(1.1); opacity: 0.7; }
+            50% { transform: translateY(-35px) scale(0.9); opacity: 0.9; }
+            75% { transform: translateY(-15px) scale(1.05); opacity: 0.5; }
+        }
+
+        @keyframes flow {
+            0% { transform: translateX(-100px) translateY(0px) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.4; transform: rotate(180deg); }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(-30px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { transform: translateX(-100%) scaleY(0.5); opacity: 0; }
+            50% { transform: translateX(50vw) scaleY(1); opacity: 0.8; }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(0.8); opacity: 0.2; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #d2691e;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #cd853f;
+            font-style: italic;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #d2691e;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #daa520;
+            padding-bottom: 10px;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            color: #8b4513;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .char-item {
+            background: rgba(218, 165, 32, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #cd853f;
+        }
+
+        .char-title {
+            font-weight: bold;
+            color: #d2691e;
+            margin-bottom: 5px;
+        }
+
+        .elements-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(253,248,243,0.9) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elements-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 140, 0, 0.08) 0%, transparent 70%);
+            animation: rotate 25s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .elements-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .elements-title {
+            font-size: 2rem;
+            color: #d2691e;
+            margin-bottom: 20px;
+        }
+
+        .elements-desc {
+            font-size: 1.1rem;
+            color: #8b4513;
+            margin-bottom: 20px;
+        }
+
+        .element-symbols {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .element-symbol {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            min-width: 120px;
+        }
+
+        .element-symbol .symbol {
+            font-size: 2.5rem;
+            color: #cd853f;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .element-symbol .name {
+            font-size: 1.1rem;
+            color: #d2691e;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .element-symbols {
+                gap: 20px;
+            }
+            
+            .element-symbol {
+                min-width: 100px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- Fire and water particles will be generated by JavaScript -->
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Pitta Dosha</h1>
+            <p class="subtitle">The Energy of Transformation and Metabolism</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card elements-section">
+                <div class="elements-content">
+                    <h2 class="elements-title">Elemental Constitution</h2>
+                    <p class="elements-desc">Pitta is composed of the fundamental elements of Fire and Water, governing all transformation, metabolism, and digestion in the body and mind.</p>
+                    <div class="element-symbols">
+                        <div class="element-symbol">
+                            <span class="symbol">🔥</span>
+                            <span class="name">Fire</span>
+                        </div>
+                        <div class="element-symbol">
+                            <span class="symbol">💧</span>
+                            <span class="name">Water</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Physical Characteristics</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Body Structure</div>
+                            <div>Medium build with good muscle definition. Well-proportioned frame with moderate weight and height.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Skin & Hair</div>
+                            <div>Warm, soft skin that may be sensitive to sun. Hair is often fine, straight, and may gray or thin early.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Energy Patterns</div>
+                            <div>Consistent, moderate energy levels with strong digestive fire. Regular appetite and good stamina.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Mental & Emotional Traits</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Mental Qualities</div>
+                            <div>Sharp intellect, focused thinking, and excellent analytical abilities. Natural leaders with strong decision-making skills.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Emotional Nature</div>
+                            <div>Passionate, determined, and goal-oriented. Can experience anger, irritability, and impatience when imbalanced.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Communication</div>
+                            <div>Clear, direct, and articulate speakers. Confident in expression with persuasive abilities.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Functions in the Body</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Digestion & Metabolism</div>
+                            <div>Controls digestive fire, enzyme production, and metabolic processes. Regulates body temperature and energy conversion.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Transformation</div>
+                            <div>Governs all transformative processes including cellular metabolism, hormone production, and biochemical reactions.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Vision & Perception</div>
+                            <div>Regulates eyesight, visual perception, and the ability to discriminate and judge situations clearly.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated background elements
+        function createBackgroundAnimation() {
+            const bgAnimation = document.querySelector('.bg-animation');
+            
+            // Create fire particles
+            for (let i = 0; i < 12; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'fire-particle';
+                particle.style.width = Math.random() * 50 + 15 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 8 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                bgAnimation.appendChild(particle);
+            }
+            
+            // Create water particles
+            for (let i = 0; i < 6; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'water-particle';
+                particle.style.width = Math.random() * 35 + 20 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 25 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 25) + 's';
+                bgAnimation.appendChild(particle);
+            }
+            
+            // Create heat waves
+            for (let i = 0; i < 4; i++) {
+                const wave = document.createElement('div');
+                wave.className = 'heat-wave';
+                wave.style.width = Math.random() * 250 + 150 + 'px';
+                wave.style.top = Math.random() * 100 + '%';
+                wave.style.animationDelay = Math.random() * 10 + 's';
+                wave.style.animationDuration = (Math.random() * 5 + 10) + 's';
+                bgAnimation.appendChild(wave);
+            }
+            
+            // Create energy pulses
+            for (let i = 0; i < 8; i++) {
+                const pulse = document.createElement('div');
+                pulse.className = 'energy-pulse';
+                pulse.style.width = Math.random() * 80 + 40 + 'px';
+                pulse.style.height = pulse.style.width;
+                pulse.style.left = Math.random() * 100 + '%';
+                pulse.style.top = Math.random() * 100 + '%';
+                pulse.style.animationDelay = Math.random() * 15 + 's';
+                pulse.style.animationDuration = (Math.random() * 8 + 15) + 's';
+                bgAnimation.appendChild(pulse);
+            }
+        }
+        
+        // Initialize animation when page loads
+        document.addEventListener('DOMContentLoaded', createBackgroundAnimation);
+        
+        // Add smooth scroll behavior for better UX
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

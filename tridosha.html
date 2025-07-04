@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tridoshic Wellness Guide</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, serif;
+      background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+      color: #3d2914;
+      line-height: 1.6;
+      overflow-x: hidden;
+      padding: 0;
+      margin: 0;
+    }
+
+    .main-header {
+      background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .header-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #f5f1eb;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .header-title i {
+      font-size: 1.8rem;
+      animation: leafSway 3s ease-in-out infinite;
+    }
+
+    .back-home-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, #d2b48c 0%, #deb887 100%);
+      color: #3d2914;
+      padding: 0.8rem 1.5rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+
+    .back-home-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+      background: linear-gradient(135deg, #deb887 0%, #f5deb3 100%);
+    }
+
+    .back-home-btn i {
+      font-size: 1.1rem;
+    }
+
+    .content-wrapper {
+      padding: 2rem;
+    }
+
+    @keyframes leafSway {
+      0%, 100% { transform: rotate(-5deg); }
+      50% { transform: rotate(5deg); }
+    }
+
+    .tridosha-animation {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 2rem 0 4rem 0;
+      height: 400px;
+    }
+
+    .tridosha-circle {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      background: linear-gradient(135deg, #d2b48c 0%, #deb887 50%, #f5deb3 100%);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    .tridosha-text {
+      font-size: 2.2rem;
+      font-weight: bold;
+      color: #3d2914;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      letter-spacing: 3px;
+      animation: textGlow 2s ease-in-out infinite alternate;
+    }
+
+    .dosha-icon {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60px;
+      height: 60px;
+      transform: translate(-50%, -50%);
+    }
+
+    .dosha-icon:nth-child(2) {
+      animation: randomMove1 8s ease-in-out infinite;
+    }
+
+    .dosha-icon:nth-child(3) {
+      animation: randomMove2 10s ease-in-out infinite;
+    }
+
+    .dosha-icon:nth-child(4) {
+      animation: randomMove3 7s ease-in-out infinite;
+    }
+
+    .dosha-icon:nth-child(5) {
+      animation: randomMove4 12s ease-in-out infinite;
+    }
+
+    .dosha-icon:nth-child(6) {
+      animation: randomMove5 9s ease-in-out infinite;
+    }
+
+    .dosha-icon:nth-child(7) {
+      animation: randomMove6 11s ease-in-out infinite;
+    }
+
+    .icon-circle {
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, #fff 0%, #f5f1eb 100%);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 3px solid #8b4513;
+      box-shadow: 0 5px 15px rgba(139, 69, 19, 0.2);
+      animation: iconFloat 3s ease-in-out infinite;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .icon-circle::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.3) 50%, transparent 70%);
+      animation: shimmer 2s linear infinite;
+    }
+
+    .icon-circle i {
+      font-size: 1.5rem;
+      color: #8b4513;
+      z-index: 2;
+      position: relative;
+    }
+
+    .dosha-label {
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.7rem;
+      font-weight: bold;
+      color: #8b4513;
+      background: rgba(255,255,255,0.9);
+      padding: 2px 6px;
+      border-radius: 8px;
+      white-space: nowrap;
+      animation: labelPulse 2s ease-in-out infinite;
+    }
+
+    /* Random movement animations across the entire circle */
+    @keyframes randomMove1 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      12% { transform: translate(-50%, -50%) translate(80px, -60px); }
+      25% { transform: translate(-50%, -50%) translate(-70px, 90px); }
+      37% { transform: translate(-50%, -50%) translate(110px, 40px); }
+      50% { transform: translate(-50%, -50%) translate(-30px, -100px); }
+      62% { transform: translate(-50%, -50%) translate(50px, 80px); }
+      75% { transform: translate(-50%, -50%) translate(-90px, -20px); }
+      87% { transform: translate(-50%, -50%) translate(40px, -70px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes randomMove2 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      15% { transform: translate(-50%, -50%) translate(-85px, 45px); }
+      30% { transform: translate(-50%, -50%) translate(65px, -95px); }
+      45% { transform: translate(-50%, -50%) translate(-40px, -70px); }
+      60% { transform: translate(-50%, -50%) translate(95px, 25px); }
+      75% { transform: translate(-50%, -50%) translate(-60px, 85px); }
+      90% { transform: translate(-50%, -50%) translate(20px, -50px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes randomMove3 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      20% { transform: translate(-50%, -50%) translate(75px, 75px); }
+      40% { transform: translate(-50%, -50%) translate(-100px, -10px); }
+      60% { transform: translate(-50%, -50%) translate(35px, -85px); }
+      80% { transform: translate(-50%, -50%) translate(-55px, 70px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes randomMove4 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      10% { transform: translate(-50%, -50%) translate(-75px, -80px); }
+      25% { transform: translate(-50%, -50%) translate(90px, 15px); }
+      40% { transform: translate(-50%, -50%) translate(-25px, 95px); }
+      55% { transform: translate(-50%, -50%) translate(110px, -35px); }
+      70% { transform: translate(-50%, -50%) translate(-95px, 55px); }
+      85% { transform: translate(-50%, -50%) translate(45px, -90px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes randomMove5 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      16% { transform: translate(-50%, -50%) translate(85px, -25px); }
+      33% { transform: translate(-50%, -50%) translate(-45px, -90px); }
+      50% { transform: translate(-50%, -50%) translate(-80px, 60px); }
+      66% { transform: translate(-50%, -50%) translate(60px, 85px); }
+      83% { transform: translate(-50%, -50%) translate(-105px, -40px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes randomMove6 {
+      0% { transform: translate(-50%, -50%) translate(0, 0); }
+      14% { transform: translate(-50%, -50%) translate(-65px, 85px); }
+      28% { transform: translate(-50%, -50%) translate(100px, -55px); }
+      42% { transform: translate(-50%, -50%) translate(-90px, -65px); }
+      56% { transform: translate(-50%, -50%) translate(30px, 95px); }
+      70% { transform: translate(-50%, -50%) translate(85px, 35px); }
+      84% { transform: translate(-50%, -50%) translate(-50px, -85px); }
+      100% { transform: translate(-50%, -50%) translate(0, 0); }
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+    }
+
+    @keyframes labelPulse {
+      0%, 100% { opacity: 0.8; transform: translateX(-50%) scale(0.9); }
+      50% { opacity: 1; transform: translateX(-50%) scale(1); }
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% {
+        box-shadow: 0 15px 40px rgba(139, 69, 19, 0.3);
+        transform: scale(1);
+      }
+      50% {
+        box-shadow: 0 20px 50px rgba(139, 69, 19, 0.4);
+        transform: scale(1.02);
+      }
+    }
+
+    @keyframes textGlow {
+      0% {
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+      }
+      100% {
+        text-shadow: 2px 2px 8px rgba(139, 69, 19, 0.3), 0 0 20px rgba(139, 69, 19, 0.1);
+      }
+    }
+
+    @keyframes iconFloat {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-5px) scale(1.05);
+      }
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1.5rem;
+      color: #8b4513;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
+      animation: slideInUp 1s ease-out;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #d2b48c 0%, #deb887 100%);
+      color: #3d2914;
+      padding: 1rem;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .routine-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .time-block {
+      background: linear-gradient(135deg, #faf6f0 0%, #f0e6d2 100%);
+      padding: 1.2rem;
+      border-radius: 15px;
+      border-left: 5px solid #8b4513;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+
+    .time-block h3 {
+      color: #8b4513;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
+
+    .food-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .food-column {
+      background: #fafafa;
+      padding: 2rem;
+      border-radius: 15px;
+    }
+
+    .eat-column {
+      background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+      border: 2px solid #4caf50;
+    }
+
+    .avoid-column {
+      background: linear-gradient(135deg, #ffeaea 0%, #fff5f5 100%);
+      border: 2px solid #f44336;
+    }
+
+    .food-item {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      background: rgba(255,255,255,0.7);
+      padding: 1rem;
+      border-radius: 10px;
+      gap: 10px;
+    }
+
+    .food-item span {
+      font-size: 1.4rem;
+      animation: bounce 2s infinite;
+    }
+
+    .disease-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .disease-card {
+      background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+      padding: 1.5rem;
+      border-radius: 15px;
+      border: 1px solid #ffc107;
+      position: relative;
+    }
+
+    .disease-card h4 {
+      color: #e65100;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .remedy-list {
+      list-style: none;
+      padding-left: 1rem;
+    }
+
+    .remedy-list li::before {
+      content: '✓';
+      color: #4caf50;
+      margin-right: 0.5rem;
+      font-weight: bold;
+    }
+
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .animate-on-scroll.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Animations */
+    @keyframes slideInUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-4px); }
+    }
+
+    @media (max-width: 768px) {
+      .food-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .tridosha-animation {
+        height: 300px;
+        margin: 1rem 0 2rem 0;
+      }
+      
+      .tridosha-circle {
+        width: 280px;
+        height: 280px;
+      }
+      
+      .tridosha-text {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+      }
+      
+      .dosha-icon {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .dosha-icon:nth-child(2) {
+        animation: randomMove1 8s ease-in-out infinite;
+      }
+
+      .dosha-icon:nth-child(3) {
+        animation: randomMove2 10s ease-in-out infinite;
+      }
+
+      .dosha-icon:nth-child(4) {
+        animation: randomMove3 7s ease-in-out infinite;
+      }
+
+      .dosha-icon:nth-child(5) {
+        animation: randomMove4 12s ease-in-out infinite;
+      }
+
+      .dosha-icon:nth-child(6) {
+        animation: randomMove5 9s ease-in-out infinite;
+      }
+
+      .dosha-icon:nth-child(7) {
+        animation: randomMove6 11s ease-in-out infinite;
+      }
+      
+      .icon-circle {
+        width: 50px;
+        height: 50px;
+      }
+      
+      .icon-circle i {
+        font-size: 1.2rem;
+      }
+
+      /* Mobile random movements - smaller range */
+      @keyframes randomMove1 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        12% { transform: translate(-50%, -50%) translate(50px, -40px); }
+        25% { transform: translate(-50%, -50%) translate(-45px, 60px); }
+        37% { transform: translate(-50%, -50%) translate(70px, 25px); }
+        50% { transform: translate(-50%, -50%) translate(-20px, -65px); }
+        62% { transform: translate(-50%, -50%) translate(35px, 55px); }
+        75% { transform: translate(-50%, -50%) translate(-60px, -15px); }
+        87% { transform: translate(-50%, -50%) translate(25px, -45px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+
+      @keyframes randomMove2 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        15% { transform: translate(-50%, -50%) translate(-55px, 30px); }
+        30% { transform: translate(-50%, -50%) translate(40px, -60px); }
+        45% { transform: translate(-50%, -50%) translate(-25px, -45px); }
+        60% { transform: translate(-50%, -50%) translate(60px, 15px); }
+        75% { transform: translate(-50%, -50%) translate(-40px, 55px); }
+        90% { transform: translate(-50%, -50%) translate(15px, -35px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+
+      @keyframes randomMove3 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        20% { transform: translate(-50%, -50%) translate(45px, 45px); }
+        40% { transform: translate(-50%, -50%) translate(-65px, -5px); }
+        60% { transform: translate(-50%, -50%) translate(20px, -55px); }
+        80% { transform: translate(-50%, -50%) translate(-35px, 45px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+
+      @keyframes randomMove4 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        10% { transform: translate(-50%, -50%) translate(-45px, -50px); }
+        25% { transform: translate(-50%, -50%) translate(55px, 10px); }
+        40% { transform: translate(-50%, -50%) translate(-15px, 60px); }
+        55% { transform: translate(-50%, -50%) translate(70px, -20px); }
+        70% { transform: translate(-50%, -50%) translate(-60px, 35px); }
+        85% { transform: translate(-50%, -50%) translate(30px, -55px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+
+      @keyframes randomMove5 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        16% { transform: translate(-50%, -50%) translate(55px, -15px); }
+        33% { transform: translate(-50%, -50%) translate(-30px, -60px); }
+        50% { transform: translate(-50%, -50%) translate(-50px, 40px); }
+        66% { transform: translate(-50%, -50%) translate(40px, 55px); }
+        83% { transform: translate(-50%, -50%) translate(-65px, -25px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+
+      @keyframes randomMove6 {
+        0% { transform: translate(-50%, -50%) translate(0, 0); }
+        14% { transform: translate(-50%, -50%) translate(-40px, 55px); }
+        28% { transform: translate(-50%, -50%) translate(65px, -35px); }
+        42% { transform: translate(-50%, -50%) translate(-60px, -40px); }
+        56% { transform: translate(-50%, -50%) translate(20px, 60px); }
+        70% { transform: translate(-50%, -50%) translate(55px, 20px); }
+        84% { transform: translate(-50%, -50%) translate(-35px, -55px); }
+        100% { transform: translate(-50%, -50%) translate(0, 0); }
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header class="main-header">
+  <div class="header-content">
+    <div class="header-title">
+      <i class="fas fa-leaf"></i>
+      <span>Tridoshic Wellness Guide</span>
+    </div>
+    <a href="homepg.php" class="back-home-btn">
+      <i class="fas fa-home"></i>
+      <span>Back to Home</span>
+    </a>
+  </div>
+</header>
+
+<div class="tridosha-animation">
+  <div class="tridosha-circle">
+    <div class="tridosha-text">TRIDOSHA</div>
+    <div class="dosha-icon" style="--angle: 0deg;">
+      <div class="icon-circle">
+        <i class="fas fa-fire"></i>
+        <div class="dosha-label">PITTA</div>
+      </div>
+    </div>
+    <div class="dosha-icon" style="--angle: 60deg;">
+      <div class="icon-circle">
+        <i class="fas fa-leaf"></i>
+        <div class="dosha-label">VATA</div>
+      </div>
+    </div>
+    <div class="dosha-icon" style="--angle: 120deg;">
+      <div class="icon-circle">
+        <i class="fas fa-seedling"></i>
+        <div class="dosha-label">KAPHA</div>
+      </div>
+    </div>
+    <div class="dosha-icon" style="--angle: 180deg;">
+      <div class="icon-circle">
+        <i class="fas fa-tint"></i>
+        <div class="dosha-label">WATER</div>
+      </div>
+    </div>
+    <div class="dosha-icon" style="--angle: 240deg;">
+      <div class="icon-circle">
+        <i class="fas fa-moon"></i>
+        <div class="dosha-label">SPACE</div>
+      </div>
+    </div>
+    <div class="dosha-icon" style="--angle: 300deg;">
+      <div class="icon-circle">
+        <i class="fas fa-spa"></i>
+        <div class="dosha-label">EARTH</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="content-wrapper">
+
+<h1>Tridoshic Wellness Guide</h1>
+
+<div class="section animate-on-scroll">
+  <h2><i class="fas fa-balance-scale"></i> Tridoshic Lifestyle Tips</h2>
+  <div class="routine-grid">
+    <div class="time-block">
+      <h3>🧘‍♀️ Harmony in Routine</h3>
+      <p>Wake early, eat on time, and sleep by 10 PM. Routine is essential for preserving natural balance.</p>
+    </div>
+    <div class="time-block">
+      <h3>🍲 Balanced Diet</h3>
+      <p>Favor freshly cooked meals with all six Ayurvedic tastes in moderation. Keep meals warm and easy to digest.</p>
+    </div>
+    <div class="time-block">
+      <h3>🌿 Seasonal Adaptation</h3>
+      <p>Modify your routine and food according to seasonal changes. Stay warm in winter, cool in summer, and grounded in dry seasons.</p>
+    </div>
+    <div class="time-block">
+      <h3>🕉️ Mindful Practices</h3>
+      <p>Engage in daily meditation, yoga, and pranayama to maintain emotional and mental clarity.</p>
+    </div>
+  </div>
+</div>
+
+<div class="section animate-on-scroll">
+  <h2><i class="fas fa-seedling"></i> Tridoshic-Friendly Foods</h2>
+  <div class="food-container">
+    <div class="food-column eat-column">
+      <h3 style="color: #4caf50;"><i class="fas fa-check-circle"></i> Favor These</h3>
+      <div class="food-item"><span>🍚</span><div><strong>Grains:</strong> Basmati rice, oats, barley, quinoa</div></div>
+      <div class="food-item"><span>🥦</span><div><strong>Vegetables:</strong> Cooked carrots, greens, zucchini</div></div>
+      <div class="food-item"><span>🍒</span><div><strong>Fruits:</strong> Ripe apples, berries, pears</div></div>
+      <div class="food-item"><span>🌰</span><div><strong>Fats:</strong> Ghee, olive oil (moderate use)</div></div>
+      <div class="food-item"><span>🧂</span><div><strong>Spices:</strong> Cumin, coriander, fennel</div></div>
+      <div class="food-item"><span>🍵</span><div><strong>Drinks:</strong> Warm teas (ginger, tulsi), lemon water</div></div>
+    </div>
+
+    <div class="food-column avoid-column">
+      <h3 style="color: #f44336;"><i class="fas fa-times-circle"></i> Avoid/Minimize</h3>
+      <div class="food-item"><span>❄️</span><div><strong>Extreme Foods:</strong> Cold, raw, excessively spicy or oily items</div></div>
+      <div class="food-item"><span>🥓</span><div><strong>Heavy Items:</strong> Fried or heavily processed food</div></div>
+      <div class="food-item"><span>🧊</span><div><strong>Cold Drinks:</strong> Ice water or sodas</div></div>
+      <div class="food-item"><span>⏰</span><div><strong>Irregular Eating:</strong> Skipping meals or eating too late</div></div>
+    </div>
+  </div>
+</div>
+
+<div class="section animate-on-scroll">
+  <h2><i class="fas fa-heartbeat"></i> Common Imbalances & Remedies</h2>
+  <div class="disease-grid">
+    <div class="disease-card">
+      <h4>Overstimulation & Burnout</h4>
+      <p><strong>Symptoms:</strong> Fatigue, anxiety, irritability</p>
+      <ul class="remedy-list">
+        <li>Prioritize rest and deep sleep</li>
+        <li>Warm herbal teas (ashwagandha, chamomile)</li>
+        <li>Abhyanga (oil massage before bed)</li>
+      </ul>
+    </div>
+    <div class="disease-card">
+      <h4>Digestive Upset</h4>
+      <p><strong>Symptoms:</strong> Gas, bloating, indigestion</p>
+      <ul class="remedy-list">
+        <li>Warm, simple meals with digestive spices</li>
+        <li>Regular mealtimes</li>
+        <li>Fennel or ginger tea after meals</li>
+      </ul>
+    </div>
+    <div class="disease-card">
+      <h4>Seasonal Mood Swings</h4>
+      <p><strong>Symptoms:</strong> Moodiness, fatigue, dry skin</p>
+      <ul class="remedy-list">
+        <li>Adjust lifestyle with seasons</li>
+        <li>Stay hydrated and moisturized</li>
+        <li>Gentle morning sun exposure</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('animated');
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => {
+    observer.observe(el);
+  });
+</script>
+
+</body>
+</html>

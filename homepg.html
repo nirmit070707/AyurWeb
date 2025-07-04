@@ -1,0 +1,739 @@
+
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYURWEB - Ancient Wisdom for Modern Wellness</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary:rgb(89, 172, 94);
+            --primary-dark:rgb(47, 110, 22);
+            --accent: #F59E0B;
+            --bg: #F0FDF4;
+            --white: #FFFFFF;
+            --text: #111827;
+            --text-light: #6B7280;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            --hover-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        html { scroll-behavior: smooth; }
+
+        /* Navigation */
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 1rem 5%;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(16, 185, 129, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text);
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .logo-text span { color: var(--accent); }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link:hover { 
+            color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .login-btn:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(245, 158, 11, 0.1), transparent 50%);
+        }
+
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 5%;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2.5rem;
+            line-height: 1.8;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .cta-primary {
+            background: var(--accent);
+            color: var(--text);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .cta-primary:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            padding: 16px 32px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .cta-secondary:hover { 
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-3px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-circle {
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-icon {
+            font-size: 8rem;
+            color: var(--accent);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Doshas Section */
+        .doshas {
+            padding: 8rem 5%;
+            background: var(--white);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 1.5rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .dosha-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .dosha-card {
+            background: white;
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(16, 185, 129, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dosha-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        }
+
+        .dosha-card:hover { 
+            transform: translateY(-10px);
+            box-shadow: var(--hover-shadow);
+        }
+
+        .dosha-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .dosha-card:hover .dosha-icon {
+            transform: scale(1.1);
+            color: var(--accent);
+        }
+
+        .dosha-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2.5rem;
+        }
+
+        .dosha-link {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .dosha-link:hover { 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+        }
+
+        /* Prakruti Section */
+        .prakruti {
+            padding: 8rem 5%;
+            background: linear-gradient(135deg, var(--bg), #ECFDF5);
+        }
+
+        .prakruti-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .prakruti-content {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            padding: 5rem 4rem;
+            border-radius: 30px;
+            color: white;
+            position: relative;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .prakruti-content::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(245, 158, 11, 0.1), transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .prakruti-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .prakruti-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .prakruti-content p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            position: relative;
+            z-index: 2;
+        }
+
+        .prakruti-cta {
+            background: var(--accent);
+            color: var(--text);
+            padding: 16px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+        }
+
+        .prakruti-cta:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(245, 158, 11, 0.4);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-brand {
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.8);
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            margin-top: 3rem;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .hero-container { 
+                grid-template-columns: 1fr; 
+                text-align: center; 
+                gap: 2rem;
+            }
+            .hero-content h1 { font-size: 2.5rem; }
+            .hero-circle { width: 250px; height: 250px; }
+            .hero-icon { font-size: 4rem; }
+            .section-title { font-size: 2.2rem; }
+            .dosha-grid { 
+                grid-template-columns: 1fr; 
+                gap: 2rem;
+            }
+            .prakruti-content { padding: 3rem 2rem; }
+            .hero-cta { flex-direction: column; }
+        }
+
+        /* Alert Styles */
+        .alert {
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            margin: 1rem 0;
+            font-weight: 500;
+            display: none;
+        }
+
+        .alert-info {
+            background: #EBF8FF;
+            color: #2B6CB0;
+            border: 1px solid #BEE3F8;
+        }
+
+        .alert-warning {
+            background: #FFFBEB;
+            color: #C05621;
+            border: 1px solid #FED7AA;
+        }
+    </style>
+</head>
+<body>
+    <!-- Alert Messages -->
+    <div id="alertContainer"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="logo-text">AYUR<span>WEB</span></div>
+            </a>
+            
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#doshas" class="nav-link">Doshas</a></li>
+                <li><a href="#prakruti" class="nav-link">Prakruti Test</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+
+            <a href="#" class="login-btn" id="loginBtn">
+                <i class="fas fa-user-circle"></i>
+                Login / Register
+            </a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Ancient Wisdom for Modern Wellness</h1>
+                <p>Discover the timeless science of Ayurveda and unlock your path to holistic health through personalized constitutional analysis and natural healing practices.</p>
+
+                <div class="hero-cta">
+                    <a href="#" class="cta-primary" id="heroCta">
+                        <i class="fas fa-compass"></i>
+                        Discover Your Prakruti
+                    </a>
+                    <a href="#doshas" class="cta-secondary">
+                        <i class="fas fa-book-open"></i>
+                        Learn About Doshas
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-visual">
+                <div class="hero-circle">
+                    <i class="fas fa-yin-yang hero-icon"></i>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doshas Section -->
+    <section class="doshas" id="doshas">
+        <div class="section-container">
+            <div class="section-header">
+                <div class="section-subtitle">Understanding Balance</div>
+                <h2 class="section-title">Discover Your Dosha</h2>
+                <p class="section-description">
+                    The three doshas—Vata, Pitta, and Kapha—are the fundamental energies that govern all physical and mental processes in the body.
+                </p>
+            </div>
+
+            <div class="dosha-grid">
+                <div class="dosha-card">
+                    <i class="fas fa-wind dosha-icon"></i>
+                    <h3 class="dosha-name">Vata</h3>
+                    <a href="#" class="dosha-link">
+                        <i class="fas fa-arrow-right"></i>
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="dosha-card">
+                    <i class="fas fa-fire dosha-icon"></i>
+                    <h3 class="dosha-name">Pitta</h3>
+                    <a href="#" class="dosha-link">
+                        <i class="fas fa-arrow-right"></i>
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="dosha-card">
+                    <i class="fas fa-tint dosha-icon"></i>
+                    <h3 class="dosha-name">Kapha</h3>
+                    <a href="#" class="dosha-link">
+                        <i class="fas fa-arrow-right"></i>
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Prakruti Section -->
+    <section class="prakruti" id="prakruti">
+        <div class="prakruti-container">
+            <div class="prakruti-content">
+                <i class="fas fa-user-md prakruti-icon"></i>
+                <h2>Discover Your Unique Constitution</h2>
+                <p>
+                    Your Prakruti is your unique Ayurvedic constitution—a specific combination of Vata, Pitta, and Kapha doshas determined at birth.
+                </p>
+                <a href="#" class="prakruti-cta" id="prakrutiCta">
+                    <i class="fas fa-play-circle"></i>
+                    Take Prakruti Assessment
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <div class="footer-logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div class="logo-text">AYUR<span>WEB</span></div>
+                </div>
+                <p class="footer-description">
+                    Bridging ancient Ayurvedic wisdom with modern technology to help you achieve optimal health and wellness.
+                </p>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © 2025 AYURWEB. All rights reserved. | Ancient wisdom, modern wellness.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // User authentication state (This would be set by PHP)
+        let isLoggedIn = false; // Replace with actual PHP session check
+
+        // Function to show alerts
+        function showAlert(message, type = 'info') {
+            const alertContainer = document.getElementById('alertContainer');
+            const alert = document.createElement('div');
+            alert.className = `alert alert-${type}`;
+            alert.style.display = 'block';
+            alert.innerHTML = `
+                <i class="fas fa-${type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
+                ${message}
+            `;
+            
+            alertContainer.appendChild(alert);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                alert.remove();
+            }, 5000);
+        }
+
+        // Handle Prakruti Quiz clicks
+        function handlePrakrutiClick(e) {
+            e.preventDefault();
+            
+            if (isLoggedIn) {
+                // User is logged in, proceed to quiz
+                showAlert('Welcome to the Prakruti Assessment! Redirecting...', 'info');
+                setTimeout(() => {
+                    window.location.href = 'prakruti-quiz.php';
+                }, 1500);
+            } else {
+                // User not logged in, redirect to register
+                showAlert('Please login or register to take the Prakruti Assessment.', 'warning');
+                setTimeout(() => {
+                    window.location.href = 'register.php';
+                }, 2000);
+            }
+        }
+
+        // Handle Login button click
+        function handleLoginClick(e) {
+            e.preventDefault();
+            window.location.href = 'register.php';
+        }
+
+        // Add event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Prakruti assessment buttons
+            document.getElementById('heroCta').addEventListener('click', handlePrakrutiClick);
+            document.getElementById('prakrutiCta').addEventListener('click', handlePrakrutiClick);
+            
+            // Login button
+            document.getElementById('loginBtn').addEventListener('click', handleLoginClick);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    const href = this.getAttribute('href');
+                    if (href !== '#' && href.length > 1) {
+                        e.preventDefault();
+                        const target = document.querySelector(href);
+                        if (target) {
+                            target.scrollIntoView({ 
+                                behavior: 'smooth',
+                                block: 'start'
+                            });
+                        }
+                    }
+                });
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.style.background = 'rgba(255, 255, 255, 0.98)';
+                navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+                navbar.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+</html>  

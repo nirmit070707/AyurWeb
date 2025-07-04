@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vata Dosha Health Guide</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f5f1eb 0%, #e8ddd4 100%);
+            color: #3d2914;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #8b4513 0%, #a0522d 100%);
+            color: rgb(255, 255, 255);
+            padding: 2rem 0;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(139, 69, 19, 0.3);
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 20s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: slideInDown 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .back-btn {
+    position: absolute;
+    top: 1rem;
+    right: 2rem;
+    background: rgba(216, 200, 185, 0.934);
+    color: #79440b;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px; /* fully rounded pill shape */
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    font-size: 1rem;
+    font-weight: 700;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #3e2a0e;
+    box-shadow: 0 6px 16px rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+   
+     
+
+}
+
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Content sections */
+        .content-section {
+            padding: 3rem 0;
+        }
+
+        .section {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(139, 69, 19, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            animation: slideInUp 0.8s ease-out;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(139, 69, 19, 0.15);
+        }
+
+        .section h2 {
+            background: linear-gradient(135deg, #d2b48c 0%, #deb887 100%);
+            color: #3d2914;
+            padding: 2rem;
+            margin: 0;
+            font-size: 1.8rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .section h2 i {
+            margin-right: 0.5rem;
+            font-size: 1.2em;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Routine Grid */
+        .routine-grid {
+            padding: 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .time-block {
+            background: linear-gradient(135deg, #faf6f0 0%, #f0e6d2 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border-left: 5px solid #8b4513;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .time-block::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(139, 69, 19, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .time-block:hover::before {
+            transform: translateX(100%);
+        }
+
+        .time-block:hover {
+            transform: translateX(10px);
+            box-shadow: 0 8px 25px rgba(139, 69, 19, 0.15);
+            border-left-width: 8px;
+        }
+
+        .time-block h3 {
+            color: #8b4513;
+            margin-bottom: 0.8rem;
+            font-size: 1.1rem;
+            animation: fadeInLeft 1s ease-out;
+        }
+
+        .time-block p {
+            color: #5d4037;
+            line-height: 1.6;
+            animation: fadeInRight 1s ease-out 0.2s both;
+        }
+
+        /* Food Container */
+        .food-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .food-column {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .eat-column {
+            background: linear-gradient(135deg, #e8f5e8 0%, #f0f8f0 100%);
+            border: 2px solid #4caf50;
+        }
+
+        .avoid-column {
+            background: linear-gradient(135deg, #ffeaea 0%, #fff5f5 100%);
+            border: 2px solid #f44336;
+        }
+        .floating-circle-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 3rem 0;
+}
+
+.floating-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle at center, #e8ddd4, #d8c3af);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(139, 69, 19, 0.1);
+    animation: pulseGlow 6s infinite ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #6c4e34;
+    font-size: 2rem;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(139, 69, 19, 0.1);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 40px rgba(139, 69, 19, 0.2);
+    }
+}
+
+.floating-icon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #fff8ee;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    font-size: 1.5rem;
+    color: #8b4513;
+    animation: floatIcon 6s infinite ease-in-out;
+}
+
+@keyframes floatIcon {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+
+.floating-icon:nth-child(1) { top: -20px; left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+.floating-icon:nth-child(2) { top: 50%; left: -20px; transform: translateY(-50%); animation-delay: 1s; }
+.floating-icon:nth-child(3) { bottom: -20px; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
+.floating-icon:nth-child(4) { top: 50%; right: -20px; transform: translateY(-50%); animation-delay: 3s; }
+.floating-icon:nth-child(5) { top: 10%; right: 10%; animation-delay: 4s; }
+
+
+        .food-column::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.3), transparent);
+            border-radius: 15px;
+            animation: borderGlow 3s infinite;
+            z-index: -1;
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .food-item {
+            display: flex;
+            align-items: flex-start;
+            margin: 1rem 0;
+            padding: 1rem;
+            background: rgba(255,255,255,0.7);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            animation: slideInFade 0.8s ease-out;
+        }
+
+        .food-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .food-item span {
+            font-size: 1.5rem;
+            margin-right: 1rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .food-item strong {
+            color: #3d2914;
+            display: block;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Disease Grid */
+        .disease-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .disease-card {
+            background: linear-gradient(135deg, #fff8e1 0%, #ffecb3 100%);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid #ffc107;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .disease-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #ffc107, #ff9800, #ffc107);
+            animation: progressBar 2s infinite;
+        }
+
+        @keyframes progressBar {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .disease-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 12px 30px rgba(255, 193, 7, 0.3);
+        }
+
+        .disease-card h4 {
+            color: #e65100;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            animation: typeWriter 1s steps(20) 1s both;
+        }
+
+        @keyframes typeWriter {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        .remedy-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .remedy-list li {
+            padding: 0.5rem 0;
+            position: relative;
+            padding-left: 1.5rem;
+            animation: slideInLeft 0.5s ease-out;
+        }
+
+        .remedy-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #4caf50;
+            font-weight: bold;
+            animation: checkMark 0.5s ease-out 0.5s both;
+        }
+
+        @keyframes checkMark {
+            0% { transform: scale(0) rotate(180deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        /* Animations */
+        @keyframes slideInDown {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInFade {
+            from {
+                transform: translateX(-30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .back-btn {
+                position: static;
+                margin-top: 1rem;
+            }
+
+            .food-container {
+                grid-template-columns: 1fr;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .routine-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Scroll animations */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-on-scroll.animated {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        
+            <a href="homepg.php" class="home-btn">
+            <button class="back-btn"><p>Back to Home</p></button> 
+            </a>
+        </button>
+        <h1>Vata-Kapha Dosha Health Guide</h1>
+        <p>Balance Your Mind, Body & Spirit with Ancient Ayurvedic Wisdom</p>
+    </div>
+
+    <div class="floating-circle-wrapper">
+    <div class="floating-circle">
+        VATA-KAPHA
+        <div class="floating-icon"><i class="fas fa-sun"></i></div>
+        <div class="floating-icon"><i class="fas fa-leaf"></i></div>
+        <div class="floating-icon"><i class="fas fa-seedling"></i></div>
+        <div class="floating-icon"><i class="fas fa-moon"></i></div>
+        <div class="floating-icon"><i class="fas fa-fire"></i></div>
+    </div>
+</div>
+
+
+    <div class="container">
+        <div class="content-section">
+            <div class="section animate-on-scroll">
+                <h2><i class="fas fa-clock"></i> Daily Routine for Vata-Kapha Balance</h2>
+                <div class="routine-grid">
+                    <div class="time-block">
+                        <h3>6:30 - 7:30 AM - Gentle Awakening</h3>
+                        <p>Wake up at a consistent time. Begin with warm water and lemon. Gentle stretching or a short walk helps activate both doshas.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>8:00 - 9:00 AM - Morning Nourishment</h3>
+                        <p>Practice Abhyanga (oil massage) with warm sesame or almond oil. Take a warm shower and enjoy a grounding, warm breakfast like cooked grains.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>10:00 - 11:00 AM - Productive Focus</h3>
+                        <p>Engage in your most creative or focused work during this time. Maintain warmth and avoid sitting too long without movement.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>12:30 - 1:30 PM - Hearty Lunch</h3>
+                        <p>Main meal of the day. Focus on warm, spiced, lightly oily food with easy-to-digest grains, legumes, and seasonal vegetables.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>2:30 - 3:30 PM - Light Activity</h3>
+                        <p>Take a short stroll or do light stretching to stimulate circulation. Avoid heavy naps as they may aggravate Kapha.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>6:00 - 7:00 PM - Light Dinner</h3>
+                        <p>Eat a smaller meal that is warm and lightly spiced. Soups or stews are ideal to avoid heaviness before bedtime.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>8:30 - 9:30 PM - Unwind & Reflect</h3>
+                        <p>Journaling, warm herbal teas, and gentle breathing exercises help calm Vata while grounding Kapha.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>10:00 PM - Sleep Preparation</h3>
+                        <p>Sleep in a warm environment with soft lighting. Oil massage on feet and ears with calming music supports deep rest.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section animate-on-scroll">
+                <h2><i class="fas fa-utensils"></i> Dietary Guidelines for Vata-Kapha</h2>
+                <div class="food-container">
+                    <div class="food-column eat-column">
+                        <h3 style="color: #4caf50; margin-bottom: 20px;"><i class="fas fa-check-circle"></i> Favor These Foods</h3>
+                        <div class="food-item"><span>🍲</span><div><strong>Warm, Moist Meals:</strong> Stews, soups, kichari, lightly spiced with ginger and cumin</div></div>
+                        <div class="food-item"><span>🥦</span><div><strong>Cooked Veggies:</strong> Carrots, beets, squash, spinach, zucchini</div></div>
+                        <div class="food-item"><span>🍚</span><div><strong>Grains:</strong> Cooked oats, rice, barley, quinoa with ghee or sesame oil</div></div>
+                        <div class="food-item"><span>🥭</span><div><strong>Fruits:</strong> Ripe bananas, mangoes, berries, soaked dates, cooked apples</div></div>
+                        <div class="food-item"><span>🥜</span><div><strong>Nuts & Seeds:</strong> Soaked almonds, sesame seeds, flaxseed</div></div>
+                        <div class="food-item"><span>🧄</span><div><strong>Spices:</strong> Ginger, black pepper, cinnamon, cardamom, turmeric</div></div>
+                        <div class="food-item"><span>🍵</span><div><strong>Beverages:</strong> Warm teas (ginger, tulsi), warm water with lemon or honey</div></div>
+                    </div>
+
+                    <div class="food-column avoid-column">
+                        <h3 style="color: #f44336; margin-bottom: 20px;"><i class="fas fa-times-circle"></i> Avoid These Foods</h3>
+                        <div class="food-item"><span>🥶</span><div><strong>Cold Items:</strong> Ice cream, cold drinks, raw salads, chilled leftovers</div></div>
+                        <div class="food-item"><span>🥓</span><div><strong>Heavy Foods:</strong> Fried foods, excess dairy, cheese, heavy meats</div></div>
+                        <div class="food-item"><span>🍞</span><div><strong>Refined Foods:</strong> White bread, pastries, packaged snacks</div></div>
+                        <div class="food-item"><span>🍬</span><div><strong>Sugar Overload:</strong> Excessive sweets, sugary drinks, artificial sweeteners</div></div>
+                        <div class="food-item"><span>🍺</span><div><strong>Stimulants:</strong> Alcohol, caffeine, tobacco, energy drinks</div></div>
+                        <div class="food-item"><span>🌶️</span><div><strong>Excess Spice:</strong> Too much chili, hot sauce, mustard seeds</div></div>
+                        <div class="food-item"><span>⏰</span><div><strong>Irregular Meals:</strong> Skipping meals or eating at inconsistent times</div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section animate-on-scroll">
+                <h2><i class="fas fa-heartbeat"></i> Common Vata-Kapha Imbalances & Remedies</h2>
+                <div class="disease-grid">
+                    <div class="disease-card">
+                        <h4>Lethargy & Brain Fog</h4>
+                        <p><strong>Symptoms:</strong> Tiredness, heavy limbs, slow thinking</p>
+                        <ul class="remedy-list">
+                            <li>Daily walk in morning sun</li>
+                            <li>Spice teas (ginger, cinnamon)</li>
+                            <li>Light, warm meals</li>
+                        </ul>
+                    </div>
+                    <div class="disease-card">
+                        <h4>Cold Extremities</h4>
+                        <p><strong>Symptoms:</strong> Cold hands and feet, poor circulation</p>
+                        <ul class="remedy-list">
+                            <li>Warm oil massage (sesame)</li>
+                            <li>Hot water bottle on feet at night</li>
+                            <li>Avoid cold foods and drinks</li>
+                        </ul>
+                    </div>
+                    <div class="disease-card">
+                        <h4>Sluggish Digestion</h4>
+                        <p><strong>Symptoms:</strong> Bloating, gas, heaviness after meals</p>
+                        <ul class="remedy-list">
+                            <li>Ginger lemon tea before meals</li>
+                            <li>Eat warm, spiced foods</li>
+                            <li>Walk 10 minutes after meals</li>
+                        </ul>
+                    </div>
+                    <div class="disease-card">
+                        <h4>Stiffness & Joint Pain</h4>
+                        <p><strong>Symptoms:</strong> Slow movement, cracking joints</p>
+                        <ul class="remedy-list">
+                            <li>Warm bath with Epsom salt</li>
+                            <li>Apply warm sesame oil</li>
+                            <li>Do gentle stretching daily</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Back button functionality
+        document.querySelector('.back-btn').addEventListener('click', () => {
+            window.history.back();
+        });
+
+        // Add stagger animation to food items and time blocks
+        const addStaggerAnimation = (selector, delay = 100) => {
+            document.querySelectorAll(selector).forEach((item, index) => {
+                item.style.animationDelay = `${index * delay}ms`;
+            });
+        };
+
+        addStaggerAnimation('.food-item', 150);
+        addStaggerAnimation('.time-block', 200);
+        addStaggerAnimation('.disease-card', 180);
+    </script>
+</body>
+</html>

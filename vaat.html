@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vata Dosha - The Energy of Movement</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f8f4f0 0%, #e8e2d8 50%, #f0ebe5 100%);
+            color: #5a4a3a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .air-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(174, 161, 141, 0.15) 0%, rgba(174, 161, 141, 0.05) 70%, transparent 100%);
+            animation: float 15s infinite ease-in-out;
+        }
+
+        .space-particle {
+            position: absolute;
+            background: rgba(139, 126, 102, 0.08);
+            border-radius: 50%;
+            animation: drift 20s infinite linear;
+        }
+
+        .wind-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(174, 161, 141, 0.3) 50%, transparent 100%);
+            animation: wind 12s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); opacity: 0.3; }
+            25% { transform: translateY(-30px) translateX(20px) rotate(90deg); opacity: 0.6; }
+            50% { transform: translateY(-60px) translateX(-10px) rotate(180deg); opacity: 0.8; }
+            75% { transform: translateY(-40px) translateX(-30px) rotate(270deg); opacity: 0.4; }
+        }
+
+        @keyframes drift {
+            0% { transform: translateX(-100px) translateY(0px); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateX(calc(100vw + 100px)) translateY(-50px); opacity: 0; }
+        }
+
+        @keyframes wind {
+            0%, 100% { transform: translateX(-100%) scaleX(0); opacity: 0; }
+            50% { transform: translateX(50vw) scaleX(1); opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #8b7e66;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #aea18d;
+            font-style: italic;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #8b7e66;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #d4c4a8;
+            padding-bottom: 10px;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            color: #6b5b4a;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .char-item {
+            background: rgba(212, 196, 168, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #aea18d;
+        }
+
+        .char-title {
+            font-weight: bold;
+            color: #8b7e66;
+            margin-bottom: 5px;
+        }
+
+        .elements-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,235,229,0.9) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elements-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(174, 161, 141, 0.1) 0%, transparent 70%);
+            animation: rotate 30s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .elements-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .elements-title {
+            font-size: 2rem;
+            color: #8b7e66;
+            margin-bottom: 20px;
+        }
+
+        .elements-desc {
+            font-size: 1.1rem;
+            color: #6b5b4a;
+            margin-bottom: 20px;
+        }
+
+        .element-symbols {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .element-symbol {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            min-width: 120px;
+        }
+
+        .element-symbol .symbol {
+            font-size: 2.5rem;
+            color: #aea18d;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .element-symbol .name {
+            font-size: 1.1rem;
+            color: #8b7e66;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .element-symbols {
+                gap: 20px;
+            }
+            
+            .element-symbol {
+                min-width: 100px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- Air particles will be generated by JavaScript -->
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Vata Dosha</h1>
+            <p class="subtitle">The Energy of Movement and Change</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card elements-section">
+                <div class="elements-content">
+                    <h2 class="elements-title">Elemental Constitution</h2>
+                    <p class="elements-desc">Vata is composed of the fundamental elements of Air and Space, governing all movement and communication in the body and mind.</p>
+                    <div class="element-symbols">
+                        <div class="element-symbol">
+                            <span class="symbol">🌬</span>
+                            <span class="name">Air</span>
+                        </div>
+                        <div class="element-symbol">
+                            <span class="symbol">✦</span>
+                            <span class="name">Space</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Physical Characteristics</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Body Structure</div>
+                            <div>Vata individuals have light, flexible bodies. Their frame is small, with
+light muscles and fat, tend to be slim or underweight. They often
+appear to be “too tall” or “too short”. Their veins and
+muscles are often quite prominent.
+</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Skin & Hair</div>
+                            <div>Dry, rough, or thin skin that may be cool to touch. Hair tends to be dry, frizzy, or brittle.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Energy Patterns</div>
+                            <div>Variable energy with bursts of activity followed by fatigue. Irregular appetite and sleep patterns.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Mental & Emotional Traits</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Mental Qualities</div>
+                            <div>Quick thinking, creative, and imaginative. Excellent at multitasking but may struggle with focus and completion.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Emotional Nature</div>
+                            <div>Enthusiastic, spontaneous, and adaptable. Can experience anxiety, worry, and mood swings when imbalanced.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Communication</div>
+                            <div>Fast talker with animated gestures. Enjoys social interaction but may be scattered in conversation.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Functions in the Body</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Movement</div>
+                            <div>Controls all bodily movements including breathing, circulation, nerve impulses, and muscle contractions.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Nervous System</div>
+                            <div>Governs the nervous system, sensory perception, and mental activities like thinking and memory.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Elimination</div>
+                            <div>Regulates elimination processes including urination, bowel movements, and menstruation.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <script>
+        // Create animated background elements
+        function createBackgroundAnimation() {
+            const bgAnimation = document.querySelector('.bg-animation');
+            
+            // Create air particles
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'air-particle';
+                particle.style.width = Math.random() * 60 + 20 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 15 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                bgAnimation.appendChild(particle);
+            }
+            
+            // Create space particles
+            for (let i = 0; i < 8; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'space-particle';
+                particle.style.width = Math.random() * 40 + 10 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                bgAnimation.appendChild(particle);
+            }
+            
+            // Create wind lines
+            for (let i = 0; i < 5; i++) {
+                const line = document.createElement('div');
+                line.className = 'wind-line';
+                line.style.width = Math.random() * 300 + 100 + 'px';
+                line.style.top = Math.random() * 100 + '%';
+                line.style.animationDelay = Math.random() * 12 + 's';
+                line.style.animationDuration = (Math.random() * 6 + 12) + 's';
+                bgAnimation.appendChild(line);
+            }
+        }
+        
+        // Initialize animation when page loads
+        document.addEventListener('DOMContentLoaded', createBackgroundAnimation);
+        
+        // Add smooth scroll behavior for better UX
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+    </script>
+</body>
+</html>

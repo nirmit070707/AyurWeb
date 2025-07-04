@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vata-Pitta Dosha Guide</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #fef7e8 0%, #f3e5f5 50%, #e8f5e8 100%);
+      margin: 0;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+      line-height: 1.6;
+      color: #333;
+    }
+
+    /* Header Styles */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(156, 102, 68, 0.2);
+      padding: 15px 0;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .header-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+    }
+
+    .header-title {
+      font-size: 1.8rem;
+      font-weight: 300;
+      background: linear-gradient(45deg, #9c6644, #ba8eba);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .home-btn {
+      background: linear-gradient(135deg, #9c6644, #ba8eba);
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(156, 102, 68, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .home-btn:hover {
+      transform: translateY(-2px);
+      background: linear-gradient(135deg, #7d4e33, #9c7a9c);
+    }
+
+    /* Wind Animation */
+    .wind-line {
+      position: absolute;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(156, 102, 68, 0.2), transparent);
+      animation: windFlow 8s linear infinite;
+    }
+
+    .wind-line:nth-child(1) { top: 20%; width: 100px; animation-delay: 0s; }
+    .wind-line:nth-child(2) { top: 40%; width: 150px; animation-delay: 2s; }
+    .wind-line:nth-child(3) { top: 60%; width: 80px; animation-delay: 4s; }
+    .wind-line:nth-child(4) { top: 80%; width: 120px; animation-delay: 6s; }
+
+    @keyframes windFlow {
+      0% { transform: translateX(-200px); opacity: 0; }
+      20%, 80% { opacity: 1; }
+      100% { transform: translateX(100vw); opacity: 0; }
+    }
+
+    /* Container */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 120px 20px 40px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Hero Section */
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      padding: 60px 20px;
+      position: relative;
+    }
+
+    .circle-container {
+      position: relative;
+      width: 500px;
+      height: 500px;
+    }
+
+    .main-circle {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(210,180,140,0.4), rgba(186,142,186,0.3), rgba(169,169,169,0.3));
+      backdrop-filter: blur(15px);
+      border: 3px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: gentleFloat 8s ease-in-out infinite;
+      position: relative;
+    }
+
+    .main-circle::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      border-radius: 50%;
+      background: linear-gradient(45deg, rgba(210,180,140,0.6), rgba(186,142,186,0.6), rgba(169,169,169,0.6));
+      animation: shimmer 6s ease-in-out infinite;
+      z-index: -1;
+    }
+
+    .center-text {
+      font-size: 3rem;
+      font-weight: 300;
+      background: linear-gradient(45deg, #9c6644, #ba8eba, #a9a9a9);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-align: center;
+      letter-spacing: 3px;
+    }
+
+    .orbit-point {
+      position: absolute;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,248,220,0.8));
+      border: 2px solid rgba(210,180,140,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.08);
+      backdrop-filter: blur(10px);
+    }
+
+    .orbit-point:hover {
+      transform: scale(1.1);
+      box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+
+    .orbit-point i {
+      font-size: 1.8rem;
+      color: #9c6644;
+    }
+
+    .point-1 { top: 5%; left: 50%; transform: translateX(-50%); animation: gentleOrbit1 12s linear infinite; }
+    .point-2 { top: 20%; right: 10%; animation: gentleOrbit2 14s linear infinite; }
+    .point-3 { bottom: 20%; right: 10%; animation: gentleOrbit3 16s linear infinite; }
+    .point-4 { bottom: 5%; left: 50%; transform: translateX(-50%); animation: gentleOrbit4 13s linear infinite; }
+    .point-5 { bottom: 20%; left: 10%; animation: gentleOrbit5 15s linear infinite; }
+    .point-6 { top: 20%; left: 10%; animation: gentleOrbit6 11s linear infinite; }
+
+    /* Content Sections */
+    .content-header {
+      text-align: center;
+      margin: 60px 0 40px;
+    }
+
+    .content-header h1 {
+      font-size: 2.5rem;
+      font-weight: 300;
+      background: linear-gradient(45deg, #9c6644, #ba8eba);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 15px;
+    }
+
+    .content-header p {
+      font-size: 1.2rem;
+      color: #666;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin: 60px 0;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .section h2 {
+      font-size: 2rem;
+      font-weight: 500;
+      color: #9c6644;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    /* Daily Routine Timeline */
+    .routine-timeline {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .routine-item {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      margin: 15px 0;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      border-left: 4px solid #9c6644;
+      transition: transform 0.3s ease;
+    }
+
+    .routine-item:hover {
+      transform: translateX(10px);
+    }
+
+    .time {
+      font-weight: 600;
+      color: #9c6644;
+      font-size: 1.1rem;
+      min-width: 100px;
+      margin-right: 20px;
+    }
+
+    .activity-text {
+      flex-grow: 1;
+      color: #555;
+    }
+
+    /* Food Section */
+    .food-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin-top: 30px;
+    }
+
+    .food-category {
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 15px;
+      padding: 25px;
+    }
+
+    .food-category.avoid {
+      background: rgba(255, 240, 240, 0.8);
+    }
+
+    .food-category h3 {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+      color: #9c6644;
+      text-align: center;
+    }
+
+    .food-item {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      margin: 8px 0;
+      background: rgba(255, 255, 255, 0.6);
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .food-item:hover {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .food-icon {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #9c6644;
+      margin-right: 12px;
+      flex-shrink: 0;
+    }
+
+    .food-text {
+      color: #555;
+      font-size: 0.95rem;
+    }
+
+    /* Health Issues Grid */
+    .diseases-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .disease-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 25px;
+      border-top: 4px solid #ba8eba;
+      transition: transform 0.3s ease;
+    }
+
+    .disease-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .disease-card h4 {
+      color: #9c6644;
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
+
+    .disease-description {
+      color: #666;
+      margin-bottom: 15px;
+      font-size: 0.95rem;
+    }
+
+    .remedy-title {
+      font-weight: 600;
+      color: #ba8eba;
+      margin-bottom: 8px;
+    }
+
+    .remedy-text {
+      color: #555;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    /* Lifestyle Grid */
+    .lifestyle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 30px;
+    }
+
+    .lifestyle-card {
+      background: rgba(255, 255, 255, 0.9);
+      border-radius: 15px;
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .lifestyle-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .lifestyle-card h4 {
+      color: #9c6644;
+      font-size: 1.3rem;
+      margin-bottom: 15px;
+    }
+
+    .lifestyle-card p {
+      color: #666;
+      line-height: 1.6;
+    }
+
+    .lifestyle-card.mind { border-top: 4px solid #ba8eba; }
+    .lifestyle-card.exercise { border-top: 4px solid #9c6644; }
+    .lifestyle-card.environment { border-top: 4px solid #a9a9a9; }
+    .lifestyle-card.routine { border-top: 4px solid #d2b48c; }
+
+    /* Animations */
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotateY(0deg); }
+      50% { transform: translateY(-15px) rotateY(2deg); }
+    }
+
+    @keyframes shimmer {
+      0%, 100% { opacity: 0.8; }
+      50% { opacity: 1; }
+    }
+
+    @keyframes gentleOrbit1 {
+      0% { transform: translateX(-50%) rotate(0deg) translateX(180px) rotate(0deg); }
+      100% { transform: translateX(-50%) rotate(360deg) translateX(180px) rotate(-360deg); }
+    }
+
+    @keyframes gentleOrbit2 {
+      0% { transform: rotate(60deg) translateX(180px) rotate(-60deg); }
+      100% { transform: rotate(420deg) translateX(180px) rotate(-420deg); }
+    }
+
+    @keyframes gentleOrbit3 {
+      0% { transform: rotate(120deg) translateX(180px) rotate(-120deg); }
+      100% { transform: rotate(480deg) translateX(180px) rotate(-480deg); }
+    }
+
+    @keyframes gentleOrbit4 {
+      0% { transform: translateX(-50%) rotate(180deg) translateX(180px) rotate(-180deg); }
+      100% { transform: translateX(-50%) rotate(540deg) translateX(180px) rotate(-540deg); }
+    }
+
+    @keyframes gentleOrbit5 {
+      0% { transform: rotate(240deg) translateX(180px) rotate(-240deg); }
+      100% { transform: rotate(600deg) translateX(180px) rotate(-600deg); }
+    }
+
+    @keyframes gentleOrbit6 {
+      0% { transform: rotate(300deg) translateX(180px) rotate(-300deg); }
+      100% { transform: rotate(660deg) translateX(180px) rotate(-660deg); }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .circle-container {
+        width: 350px;
+        height: 350px;
+      }
+
+      .center-text {
+        font-size: 2rem;
+        letter-spacing: 2px;
+      }
+
+      .orbit-point {
+        width: 70px;
+        height: 70px;
+      }
+
+      .orbit-point i {
+        font-size: 1.4rem;
+      }
+
+      .food-section {
+        grid-template-columns: 1fr;
+      }
+
+      .routine-item {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .time {
+        margin-right: 0;
+        margin-bottom: 10px;
+      }
+
+      .header-title {
+        font-size: 1.4rem;
+      }
+
+      .content-header h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Wind lines -->
+  <div class="wind-line"></div>
+  <div class="wind-line"></div>
+  <div class="wind-line"></div>
+  <div class="wind-line"></div>
+
+  <div class="header">
+    <div class="header-content">
+      <div class="header-title">Vata-Pitta Dosha Guide</div>
+      <a href="homepg.php" class="home-btn">
+        <i class="fas fa-home"></i>
+        Back to Home
+      </a>
+    </div>
+  </div>
+
+  <div class="container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="circle-container">
+        <div class="main-circle">
+          <div class="center-text">VATA-PITTA</div>
+        </div>
+
+        <div class="orbit-point point-1" title="Grounding Morning">
+          <i class="fas fa-sun" aria-hidden="true"></i>
+        </div>
+        <div class="orbit-point point-2" title="Gentle Exercise">
+          <i class="fas fa-leaf" aria-hidden="true"></i>
+        </div>
+        <div class="orbit-point point-3" title="Nourishing Diet">
+          <i class="fas fa-seedling" aria-hidden="true"></i>
+        </div>
+        <div class="orbit-point point-4" title="Calming Evening">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </div>
+        <div class="orbit-point point-5" title="Meditation & Rest">
+          <i class="fas fa-spa" aria-hidden="true"></i>
+        </div>
+        <div class="orbit-point point-6" title="Warmth & Oil">
+          <i class="fas fa-fire" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content Header -->
+    <div class="content-header">
+      <h1>Vata-Pitta Balance Guide</h1>
+      <p>Your unique constitution combines the dynamic energy of Vata with the fiery intensity of Pitta</p>
+    </div>
+
+    <!-- Daily Routine Section -->
+    <div class="section">
+      <h2>Daily Routine for Balance</h2>
+      <div class="routine-timeline">
+        <div class="routine-item">
+          <div class="time">5:30 AM</div>
+          <div class="activity-text">Wake up early, practice oil pulling with coconut oil, gentle tongue scraping</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">6:00 AM</div>
+          <div class="activity-text">Warm water with lemon and ginger, followed by 20 minutes of gentle yoga or meditation</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">7:00 AM</div>
+          <div class="activity-text">Abhyanga (self-massage) with sesame or coconut oil, followed by warm shower</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">8:00 AM</div>
+          <div class="activity-text">Nutritious breakfast with warm, moist foods - avoid rushing while eating</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">12:00 PM</div>
+          <div class="activity-text">Largest meal of the day with cooling and grounding foods, eat mindfully</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">3:00 PM</div>
+          <div class="activity-text">Herbal tea break (chamomile or fennel), avoid caffeine after 2 PM</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">6:00 PM</div>
+          <div class="activity-text">Light, early dinner with easily digestible foods</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">8:00 PM</div>
+          <div class="activity-text">Evening walk or gentle stretching, avoid intense activities</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">9:30 PM</div>
+          <div class="activity-text">Warm milk with turmeric, reading, or meditation - prepare for sleep</div>
+        </div>
+        <div class="routine-item">
+          <div class="time">10:00 PM</div>
+          <div class="activity-text">Sleep in a cool, quiet room - aim for 7-8 hours of quality rest</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dietary Guidelines Section -->
+    <div class="section">
+      <h2>Dietary Guidelines</h2>
+      <div class="food-section">
+        <div class="food-category">
+          <h3>Foods to Embrace</h3>
+          <div class="food-items">
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Coconut water and fresh coconut</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Cucumber and cooling vegetables</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Fresh cilantro and mint</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Warm milk with ghee</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Raw honey in moderation</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Sweet fruits: grapes, melons, dates</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Basmati rice and quinoa</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Soaked almonds and walnuts</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Fennel, cardamom, coriander</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Mung bean soup and kitchari</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Cooked leafy greens</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Herbal teas: chamomile, rose</div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="food-category avoid">
+          <h3>Foods to Avoid</h3>
+          <div class="food-items">
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Excessive spicy foods and chilies</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Excessive caffeine and black tea</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Alcohol and fermented foods</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Ice-cold drinks and frozen foods</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Red meat and processed meats</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Excessive garlic and onions</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Sour fruits: citrus, tomatoes</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Excessive salt and pickled foods</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Refined carbs and white bread</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Carbonated drinks and sodas</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Heavy desserts and fried foods</div>
+            </div>
+            <div class="food-item">
+              <div class="food-icon"></div>
+              <div class="food-text">Irregular eating patterns</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Health Tendencies Section -->
+    <div class="section">
+      <h2>Health Tendencies & Natural Remedies</h2>
+      <div class="diseases-grid">
+        <div class="disease-card">
+          <h4>Digestive Issues</h4>
+          <p class="disease-description">Prone to acid reflux, gastritis, and irregular appetite</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Drink aloe vera juice daily, chew fennel seeds after meals, practice mindful eating</div>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <h4>Anxiety & Stress</h4>
+          <p class="disease-description">Tendency toward worry, restlessness, and mental agitation</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Brahmi tea, daily meditation, warm sesame oil foot massage before bed</div>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <h4>Heat-Related Disorders</h4>
+          <p class="disease-description">Skin rashes, inflammation, and heat sensitivity</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Rose water spray, coconut oil application, cooling pranayama breathing</div>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <h4>Sleep Disturbances</h4>
+          <p class="disease-description">Difficulty falling asleep and restless sleep patterns</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Warm milk with nutmeg, lavender essential oil, consistent bedtime routine</div>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <h4>Headaches & Migraines</h4>
+          <p class="disease-description">Frequent tension headaches and heat-induced migraines</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Peppermint oil temple massage, stay hydrated, avoid heat exposure</div>
+          </div>
+        </div>
+
+        <div class="disease-card">
+          <h4>Joint & Muscle Issues</h4>
+          <p class="disease-description">Dry joints, muscle tension, and stiffness</p>
+          <div class="remedy">
+            <div class="remedy-title">Home Remedy:</div>
+            <div class="remedy-text">Daily oil massage, gentle yoga, turmeric golden milk, warm baths</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lifestyle Recommendations Section -->
+    <div class="section">
+      <h2>Lifestyle Recommendations</h2>
+      <div class="lifestyle-grid">
+        <div class="lifestyle-card mind">
+          <h4>Mind & Spirit</h4>
+          <p>Practice meditation daily, avoid overstimulation, cultivate patience and compassion</p>
+        </div>
+        <div class="lifestyle-card exercise">
+          <h4>Exercise</h4>
+          <p>Gentle yoga, swimming, walking in nature. Avoid intense workouts during hot weather</p>
+        </div>
+        <div class="lifestyle-card environment">
+          <h4>Environment</h4>
+          <p>Keep living spaces cool and organized, spend time in nature, avoid excessive heat</p>
+        </div>
+        <div class="lifestyle-card routine">
+          <h4>Routine</h4>
+          <p>Begin with warm water and light stretches. Eat regular, cooling meals. Stay cool and calm in the evening</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Interactive orbit points
+    document.querySelectorAll('.orbit-point').forEach(point => {
+      point.addEventListener('click', () => {
+        const title = point.getAttribute('title');
+        alert(`Tip: ${title}`);
+      });
+            });
+    
+  </script>
+</body>
+</html>

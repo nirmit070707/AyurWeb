@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vata Dosha Health Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fef7e8 0%, #f3e5f5 50%, #e8f5e8 100%);
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Header Styles */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(156, 102, 68, 0.2);
+            padding: 15px 0;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items:flex-end;
+            padding: 0 20px;
+        }
+
+        .header-title {
+            font-size: 1.8rem;
+            font-weight: 300;
+            background: linear-gradient(45deg, #9c6644, #ba8eba);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+
+        .home-btn {
+            background: linear-gradient(135deg, #9c6644, #ba8eba);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(156, 102, 68, 0.3);
+        }
+
+        .home-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(156, 102, 68, 0.4);
+            background: linear-gradient(135deg, #7d4e33, #9c7a9c);
+        }
+
+        .home-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            border-top: 1px solid rgba(156, 102, 68, 0.2);
+            padding: 25px 0;
+            margin-top: 60px;
+            box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .back-btn {
+            background: linear-gradient(135deg, rgba(156, 102, 68, 0.1), rgba(186, 142, 186, 0.1));
+            color: #9c6644;
+            border: 2px solid #9c6644;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-btn:hover {
+            background: linear-gradient(135deg, #9c6644, #ba8eba);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(156, 102, 68, 0.3);
+        }
+
+        .back-btn i {
+            font-size: 1.1rem;
+        }
+
+        /* Floating particles for Vata movement */
+        .floating-particle {
+            position: fixed;
+            width: 4px;
+            height: 4px;
+            background: rgba(156, 102, 68, 0.3);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Gentle wind effect lines */
+        .wind-line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(156, 102, 68, 0.2), transparent);
+            animation: windFlow 8s linear infinite;
+        }
+
+        .wind-line:nth-child(1) { top: 20%; width: 100px; animation-delay: 0s; }
+        .wind-line:nth-child(2) { top: 40%; width: 150px; animation-delay: 2s; }
+        .wind-line:nth-child(3) { top: 60%; width: 80px; animation-delay: 4s; }
+        .wind-line:nth-child(4) { top: 80%; width: 120px; animation-delay: 6s; }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 120px 20px 40px; /* Added top padding for fixed header */
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            position: relative;
+            margin-bottom: 60px;
+        }
+
+        .circle-container {
+            position: relative;
+            width: 500px;
+            height: 500px;
+        }
+
+        .main-circle {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(135deg, 
+                rgba(210, 180, 140, 0.4) 0%,
+                rgba(186, 142, 186, 0.3) 50%,
+                rgba(169, 169, 169, 0.3) 100%);
+            backdrop-filter: blur(15px);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: gentleFloat 8s ease-in-out infinite;
+            box-shadow: 
+                0 25px 50px rgba(0, 0, 0, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            transform-style: preserve-3d;
+            position: relative;
+        }
+
+        .main-circle::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, 
+                rgba(210, 180, 140, 0.6),
+                rgba(186, 142, 186, 0.6),
+                rgba(169, 169, 169, 0.6));
+            z-index: -1;
+            animation: shimmer 6s ease-in-out infinite;
+        }
+
+        .center-text {
+            font-size: 3rem;
+            font-weight: 300;
+            background: linear-gradient(45deg, #9c6644, #ba8eba, #a9a9a9);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-align: center;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            letter-spacing: 3px;
+        }
+
+        .orbit-point {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 248, 220, 0.8));
+            border: 2px solid rgba(210, 180, 140, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .orbit-point:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            border-color: rgba(156, 102, 68, 0.6);
+        }
+
+        .orbit-point i {
+            font-size: 1.8rem;
+            color: #9c6644;
+            transition: all 0.3s ease;
+        }
+
+        .orbit-point:hover i {
+            transform: scale(1.1);
+            color: #7d4e33;
+        }
+
+        .point-1 { top: 5%; left: 50%; transform: translateX(-50%); animation: gentleOrbit1 12s linear infinite; }
+        .point-2 { top: 20%; right: 10%; animation: gentleOrbit2 14s linear infinite; }
+        .point-3 { bottom: 20%; right: 10%; animation: gentleOrbit3 16s linear infinite; }
+        .point-4 { bottom: 5%; left: 50%; transform: translateX(-50%); animation: gentleOrbit4 13s linear infinite; }
+        .point-5 { bottom: 20%; left: 10%; animation: gentleOrbit5 15s linear infinite; }
+        .point-6 { top: 20%; left: 10%; animation: gentleOrbit6 11s linear infinite; }
+
+        .content-section {
+            max-width: 100%;
+        }
+
+        .section {
+            margin-bottom: 45px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.85);
+            border-radius: 20px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s ease;
+        }
+
+        .section:hover {
+            transform: translateY(-2px);
+        }
+
+        .section h2 {
+            color: #5d4037;
+            margin-bottom: 25px;
+            font-size: 2rem;
+            font-weight: 400;
+            background: linear-gradient(45deg, #9c6644, #ba8eba);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .routine-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .time-block {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(210, 180, 140, 0.15), rgba(186, 142, 186, 0.1));
+            border-radius: 15px;
+            border-left: 5px solid #9c6644;
+            transition: all 0.3s ease;
+        }
+
+        .time-block:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .time-block h3 {
+            color: #5d4037;
+            margin-bottom: 12px;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .time-block p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        .food-container {
+            display: flex;
+            gap: 35px;
+            margin-top: 25px;
+        }
+
+        .food-column {
+            flex: 1;
+            padding: 25px;
+            border-radius: 15px;
+            min-height: 350px;
+        }
+
+        .eat-column {
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.2), rgba(139, 195, 74, 0.1));
+            border: 2px solid rgba(139, 195, 74, 0.4);
+        }
+
+        .avoid-column {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.2), rgba(244, 67, 54, 0.1));
+            border: 2px solid rgba(244, 67, 54, 0.4);
+        }
+
+        .food-item {
+            padding: 15px;
+            margin: 10px 0;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            animation: fadeInUp 0.6s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .food-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-item span {
+            font-size: 1.5rem;
+        }
+
+        .disease-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .disease-card {
+            padding: 25px;
+            background: linear-gradient(135deg, rgba(255, 193, 7, 0.15), rgba(255, 193, 7, 0.08));
+            border-radius: 15px;
+            border: 2px solid rgba(255, 193, 7, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .disease-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .disease-card h4 {
+            color: #f57c00;
+            margin-bottom: 18px;
+            font-size: 1.4rem;
+            font-weight: 500;
+        }
+
+        .disease-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+
+        .remedy-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .remedy-list li {
+            padding: 10px 0;
+            color: #555;
+            border-bottom: 1px solid rgba(255, 193, 7, 0.2);
+            transition: color 0.3s ease;
+        }
+
+        .remedy-list li:hover {
+            color: #f57c00;
+        }
+
+        .remedy-list li:before {
+            content: "🌿 ";
+            margin-right: 10px;
+        }
+
+        @keyframes gentleFloat {
+            0%, 100% { transform: translateY(0px) rotateY(0deg); }
+            50% { transform: translateY(-15px) rotateY(2deg); }
+        }
+
+        @keyframes shimmer {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes windFlow {
+            0% { transform: translateX(-200px); opacity: 0; }
+            20% { opacity: 1; }
+            80% { opacity: 1; }
+            100% { transform: translateX(100vw); opacity: 0; }
+        }
+
+        @keyframes gentleOrbit1 {
+            0% { transform: translateX(-50%) rotate(0deg) translateX(180px) rotate(0deg); }
+            100% { transform: translateX(-50%) rotate(360deg) translateX(180px) rotate(-360deg); }
+        }
+
+        @keyframes gentleOrbit2 {
+            0% { transform: rotate(60deg) translateX(180px) rotate(-60deg); }
+            100% { transform: rotate(420deg) translateX(180px) rotate(-420deg); }
+        }
+
+        @keyframes gentleOrbit3 {
+            0% { transform: rotate(120deg) translateX(180px) rotate(-120deg); }
+            100% { transform: rotate(480deg) translateX(180px) rotate(-480deg); }
+        }
+
+        @keyframes gentleOrbit4 {
+            0% { transform: translateX(-50%) rotate(180deg) translateX(180px) rotate(-180deg); }
+            100% { transform: translateX(-50%) rotate(540deg) translateX(180px) rotate(-540deg); }
+        }
+
+        @keyframes gentleOrbit5 {
+            0% { transform: rotate(240deg) translateX(180px) rotate(-240deg); }
+            100% { transform: rotate(600deg) translateX(180px) rotate(-600deg); }
+        }
+
+        @keyframes gentleOrbit6 {
+            0% { transform: rotate(300deg) translateX(180px) rotate(-300deg); }
+            100% { transform: rotate(660deg) translateX(180px) rotate(-660deg); }
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes floatParticle {
+            0% { 
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { 
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 15px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .home-btn, .back-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .circle-container {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .center-text {
+                font-size: 2.2rem;
+            }
+            
+            .food-container {
+                flex-direction: column;
+            }
+            
+            .orbit-point {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .orbit-point i {
+                font-size: 1.4rem;
+            }
+            
+            .container {
+                padding: 140px 10px 20px;
+            }
+            
+            .hero-section {
+                padding: 40px 10px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header with Back to Home button -->
+    <div class="header">
+        <div class="header-content">
+            <div class="header-title">Vata Dosha Health Guide</div>
+            <a href="homepg.php" class="home-btn">
+                <i class="fas fa-home"></i>
+                Back to Home
+            </a>
+        </div>
+    </div>
+
+    <!-- Wind effect lines -->
+    <div class="wind-line"></div>
+    <div class="wind-line"></div>
+    <div class="wind-line"></div>
+    <div class="wind-line"></div>
+
+    <div class="container">
+        <div class="hero-section">
+            <div class="circle-container">
+                <div class="main-circle">
+                    <div class="center-text">VATA</div>
+                </div>
+                
+                <div class="orbit-point point-1" title="Grounding Morning">
+                    <i class="fas fa-sun"></i>
+                </div>
+                <div class="orbit-point point-2" title="Gentle Exercise">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <div class="orbit-point point-3" title="Nourishing Diet">
+                    <i class="fas fa-seedling"></i>
+                </div>
+                <div class="orbit-point point-4" title="Calming Evening">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="orbit-point point-5" title="Meditation & Rest">
+                    <i class="fas fa-spa"></i>
+                </div>
+                <div class="orbit-point point-6" title="Warmth & Oil">
+                    <i class="fas fa-fire"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <div class="section">
+                <h2><i class="fas fa-clock"></i> Daily Routine for Vata Balance</h2>
+                <div class="routine-grid">
+                    <div class="time-block">
+                        <h3>6:00 AM - Perfect Time to Rise</h3>
+                        <p>Rise consistently at the same time. Start with warm water.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Morning Rituals</h3>
+                        <p>A gentle rub of hands and over your face helps get a fresh start.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Body Movement</h3>
+                        <p>For vata individuals include the Sun Salutation. The most
+                    important seat of vata in the body is in the pelvic cavity, and any exercise that stretches
+                    the pelvic muscles helps to calm vata. </p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Exercises</h3>
+                        <p>Include the Forward Bend, Backward Bend,
+Spinal Twist, Shoulder Stand, Plow, Camel, Cobra, Locust, Cat, and Cow poses, and Leg
+Lifts. The Headstand, Half Wheel, and Yoga Mudra are also benefcial.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Yoga</h3>
+                        <p>Twelve alternate nostrils breathing helps in stabilizing vata in body.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Breakfast</h3>
+                        <p>Light breakfast is recommended, not too spicy or sour.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>Work</h3>
+                        <p>Make sure not to exhaust yourself, meditate from time-to-time.</p>
+                    </div>
+                    <div class="time-block">
+                        <h3>10 PM - Appropriate Time to Bed</h3>
+                        <p>Gentle yoga, meditation, reading, or journaling. Sleeping on left side is recommended.</p>
+                    </div>
+                    <!-- <div class="time-block">
+                        <h3>9:30 - 10:00 PM - Sleep Preparation</h3>
+                        <p>Regular sleep schedule is crucial. Warm room, comfortable bedding. Practice calming pranayama or listen to soft music.</p>
+                    </div> -->
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-utensils"></i> Dietary Guidelines for Vata</h2>
+                <div class="food-container">
+                    <div class="food-column eat-column">
+                        <h3 style="color: #4caf50; margin-bottom: 20px;"><i class="fas fa-check-circle"></i> Vata-Pacifying Foods</h3>
+                        
+                        <div class="food-item">
+                            <span>🌾</span>
+                            <div>
+                                <strong>Grains:</strong> Oats, rice, wheat, quinoa - all well-cooked and warm with ghee or oil
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🥕</span>
+                            <div>
+                                <strong>Vegetables:</strong> Cooked carrots, beets, cabbage, okra, cauliflower
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🍌</span>
+                            <div>
+                                <strong>Fruits:</strong> Bananas, avocados, mangoes, oranges, berries, cooked apples, dates
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🥜</span>
+                            <div>
+                                <strong>Proteins:</strong> Mung beans, tofu, paneer, fish, chicken, eggs, nuts and seeds (soaked)
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🥛</span>
+                            <div>
+                                <strong>Dairy:</strong> Warm milk, ghee, butter, soft cheeses, yogurt (at room temperature)
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🧄</span>
+                            <div>
+                                <strong>Spices:</strong> Ginger, cinnamon, cardamom, cumin, fennel, asafoetida, garlic
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🍵</span>
+                            <div>
+                                <strong>Beverages:</strong> Warm water, herbal teas (ginger, chamomile), Tea
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="food-column avoid-column">
+                        <h3 style="color: #f44336; margin-bottom: 20px;"><i class="fas fa-times-circle"></i> Foods to Minimize</h3>
+                        
+                        <div class="food-item">
+                            <span>🥬</span>
+                            <div>
+                                <strong>Raw Vegetables:</strong> Raw salads, raw broccoli, raw cabbage, raw cauliflower, raw onions
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🍎</span>
+                            <div>
+                                <strong>Astringent Fruits:</strong> Raw apples, pears, pomegranates, cranberries, unripe fruits
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>☕</span>
+                            <div>
+                                <strong>Stimulants:</strong> Excessive coffee, black tea, energy drinks, alcohol, tobacco
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>❄️</span>
+                            <div>
+                                <strong>Cold Foods:</strong> Icy cold drinks, frozen foods, refrigerated leftovers
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🌶️</span>
+                            <div>
+                                <strong>Excess Spices:</strong> Very hot peppers, excessive chili, too much black pepper
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>🍞</span>
+                            <div>
+                                <strong>Processed Foods:</strong> White bread, crackers, oily chips, packaged snacks, fast food
+                            </div>
+                        </div>
+                        
+                        <div class="food-item">
+                            <span>☁️</span>
+                            <div>
+                                <strong>Light/Dry Foods:</strong> Rice cakes, popcorn, dry cereals, excessive raw foods
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-heartbeat"></i> Common Vata Imbalances & Natural Remedies</h2>
+                <div class="disease-grid">
+                    <div class="disease-card">
+                        <h4>Vata Specific Allergies</h4>
+                        <p><strong>Symptoms:</strong> Restlessness, worry, racing thoughts, insomnia</p>
+                        <ul class="remedy-list">
+                            <li> Bloating of the stomach, gastric discomfort,
+or even intestinal colic</li>
+                            <li>Lead to sudden wheezing, sneezing,
+headache, ringing in the ears, insomnia</li>
+                            <li>Wheezing is due to narrowing of
+the bronchial tree due to vata dosha</li>
+                            <li>Use calming oils like Lavender</li>
+                            <li>That person may also experience insomnia</li>
+                        </ul>
+                    </div>
+
+                 
+                    <div class="disease-card">
+                        <h4>Digestive Issues</h4>
+                        <p><strong>Symptoms:</strong> Gas, bloating, constipation, irregular appetite</p>
+                        <ul class="remedy-list">
+                            <li>Drink warm water with ginger throughout day</li>
+                            <li>Take Triphala powder with warm water at bedtime</li>
+                            <li>Eat meals at regular times in calm environment</li>
+                            <li>Massage abdomen clockwise with warm oil</li>
+                            <li>Include ghee and fiber-rich foods</li>
+                        </ul>
+                    </div>
+
+                    <div class="disease-card">
+                        <h4>Joint Pain & Stiffness</h4>
+                        <p><strong>Symptoms:</strong> Dry, cracking joints, stiffness, muscle tension</p>
+                        <ul class="remedy-list">
+                            <li>Daily oil massage (Abhyanga) before shower</li>
+                            <li>Warm baths with Epsom salts</li>
+                            <li>Gentle yoga and stretching</li>
+                            <li>Apply warm sesame oil to affected joints</li>
+                            <li>Stay hydrated with warm fluids</li>
+                        </ul>
+                    </div>
+
+                    <div class="disease-card">
+                        <h4>Sleep Disorders</h4>
+                        <p><strong>Symptoms:</strong> Difficulty falling asleep, light sleep, early waking</p>
+                        <ul class="remedy-list">
+                            <li>Warm milk with nutmeg and cardamom</li>
+                            <li>Foot massage with warm oil before bed</li>
+                            <li>Keep bedroom warm and comfortable</li>
+                            <li>Practice yoga nidra or meditation</li>
+                            <li>Avoid screens 2 hours before sleep</li>
+                        </ul>
+                    </div>
+
+                    <div class="disease-card">
+                        <h4>Dry Skin & Hair</h4>
+                        <p><strong>Symptoms:</strong> Rough, dry skin, brittle hair, cracked lips</p>
+                        <ul class="remedy-list">
+                            <li>Regular oil massage with sesame or coconut oil</li>
+                            <li>Stay well-hydrated with warm water</li>
+                            <li>Use natural moisturizers like aloe vera</li>
+                            <li>Include healthy fats in diet (ghee, nuts)</li>
+                            <li>Avoid hot showers and harsh soaps</li>
+                        </ul>
+                    </div>
+
+                    <div class="disease-card">
+                        <h4>Mental Fatigue & Scattered Focus</h4>
+                        <p><strong>Symptoms:</strong> Poor concentration, forgetfulness, mental exhaustion</p>
+                        <ul class="remedy-list">
+                            <li>Brahmi (Bacopa) tea or supplement</li>
+                            <li>Regular meditation and pranayama</li>
+                            <li>Maintain consistent daily routine</li>
+                            <li>Adequate rest and avoid overstimulation</li>
+                            <li>Nourishing brain foods like almonds and ghee</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+   <script>
+  // Inject CSS for floating particles
+  const style = document.createElement('style');
+  style.textContent = `
+    .floating-particle {
+      position: fixed;
+      top: -20px;
+      width: 8px;
+      height: 8px;
+      background: rgba(127, 179, 179, 0.3); /* Vata-like cyan */
+      border-radius: 50%;
+      z-index: 9999;
+      pointer-events: none;
+    }
+
+    @keyframes floatParticle {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+      100% {
+        transform: translateY(120vh) scale(0.5);
+        opacity: 0;
+      }
+    }
+  `;
+  document.head.appendChild(style);
+
+  // Create floating particles representing Vata's airy nature
+  function createFloatingParticles() {
+    for (let i = 0; i < 20; i++) {
+      setTimeout(() => {
+        const particle = document.createElement('div');
+        particle.className = 'floating-particle';
+        particle.style.left = Math.random() * 100 + 'vw';
+        const duration = Math.random() * 10 + 15;
+        const delay = Math.random() * 5;
+        particle.style.animation = `floatParticle ${duration}s linear infinite`;
+        particle.style.animationDelay = `${delay}s`;
+        document.body.appendChild(particle);
+
+        // Clean up particle after animation
+        setTimeout(() => {
+          particle.remove();
+        }, 25000);
+      }, i * 2000);
+    }
+  }
+
+  // Start particle animation on load and repeat every 30s

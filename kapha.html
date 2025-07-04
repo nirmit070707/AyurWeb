@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kapha Dosha - The Energy of Structure</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #f0f8f5 0%, #e8f5e8 50%, #f3f8f0 100%);
+            color: #294e11;
+            line-height: 1.6;
+            overflow-x: hidden;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        /* Animated Background Elements */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .water-drop-3d {
+            position: absolute;
+            width: 30px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(100, 149, 237, 0.3) 0%, rgba(70, 130, 180, 0.2) 50%, rgba(135, 206, 250, 0.15) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: waterDrop 12s infinite ease-in-out;
+            box-shadow: 
+                inset -5px -5px 10px rgba(255, 255, 255, 0.3),
+                inset 5px 5px 10px rgba(70, 130, 180, 0.2),
+                0 5px 15px rgba(100, 149, 237, 0.1);
+        }
+
+        .earth-stone-3d {
+            position: absolute;
+            background: linear-gradient(135deg, rgba(139, 105, 20, 0.25) 0%, rgba(160, 82, 45, 0.2) 50%, rgba(210, 180, 140, 0.15) 100%);
+            border-radius: 30% 70% 60% 40%;
+            animation: earthFloat 18s infinite ease-in-out;
+            box-shadow: 
+                inset -3px -3px 8px rgba(255, 255, 255, 0.2),
+                inset 3px 3px 8px rgba(139, 105, 20, 0.3),
+                0 4px 12px rgba(160, 82, 45, 0.15);
+        }
+
+        .water-ripple {
+            position: absolute;
+            border: 2px solid rgba(100, 149, 237, 0.2);
+            border-radius: 50%;
+            animation: ripple 8s infinite ease-out;
+        }
+
+        .earth-crystal {
+            position: absolute;
+            background: linear-gradient(45deg, rgba(34, 139, 34, 0.2) 0%, rgba(107, 142, 35, 0.15) 50%, rgba(154, 205, 50, 0.1) 100%);
+            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+            animation: crystalGlow 15s infinite ease-in-out;
+            box-shadow: 
+                0 0 10px rgba(34, 139, 34, 0.2),
+                inset 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+
+        .moss-growth {
+            position: absolute;
+            background: radial-gradient(circle, rgba(85, 107, 47, 0.15) 0%, rgba(107, 142, 35, 0.1) 50%, transparent 70%);
+            border-radius: 50%;
+            animation: grow 20s infinite ease-in-out;
+        }
+
+        @keyframes waterDrop {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.6; }
+            25% { transform: translateY(20px) rotate(5deg); opacity: 0.8; }
+            50% { transform: translateY(40px) rotate(-3deg); opacity: 1; }
+            75% { transform: translateY(60px) rotate(3deg); opacity: 0.7; }
+        }
+
+        @keyframes earthFloat {
+            0%, 100% { transform: translateY(0px) rotateX(0deg) rotateY(0deg); opacity: 0.5; }
+            33% { transform: translateY(-15px) rotateX(15deg) rotateY(120deg); opacity: 0.7; }
+            66% { transform: translateY(-8px) rotateX(-10deg) rotateY(240deg); opacity: 0.8; }
+        }
+
+        @keyframes ripple {
+            0% { transform: scale(0); opacity: 0.8; }
+            50% { opacity: 0.4; }
+            100% { transform: scale(3); opacity: 0; }
+        }
+
+        @keyframes crystalGlow {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; filter: brightness(1); }
+            50% { transform: translateY(-10px) rotate(180deg); opacity: 0.8; filter: brightness(1.3); }
+        }
+
+        @keyframes grow {
+            0%, 100% { transform: scale(0.8); opacity: 0.3; }
+            50% { transform: scale(1.2); opacity: 0.6; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            color: #2e7d32;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #112912;
+            font-style: italic;
+        }
+
+        .content-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .info-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+        }
+
+        .card-title {
+            font-size: 1.8rem;
+            color: #2e7d32;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #66bb6a;
+            padding-bottom: 10px;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            color: #1b5e20;
+        }
+
+        .characteristics-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .char-item {
+            background: rgba(102, 187, 106, 0.15);
+            padding: 15px;
+            border-radius: 10px;
+            border-left: 4px solid #388e3c;
+        }
+
+        .char-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 5px;
+        }
+
+        .elements-section {
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(240,248,245,0.9) 100%);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .elements-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 187, 106, 0.08) 0%, transparent 70%);
+            animation: rotate 30s infinite linear;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .elements-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .elements-title {
+            font-size: 2rem;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+
+        .elements-desc {
+            font-size: 1.1rem;
+            color: #1b5e20;
+            margin-bottom: 20px;
+        }
+
+        .element-symbols {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .element-symbol {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 15px;
+            min-width: 120px;
+            position: relative;
+        }
+
+        .element-symbol.water-3d {
+            background: linear-gradient(135deg, rgba(100, 149, 237, 0.1) 0%, rgba(255, 255, 255, 0.6) 100%);
+            box-shadow: 
+                inset -2px -2px 5px rgba(100, 149, 237, 0.2),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.8),
+                0 5px 15px rgba(100, 149, 237, 0.1);
+        }
+
+        .element-symbol.earth-3d {
+            background: linear-gradient(135deg, rgba(139, 105, 20, 0.1) 0%, rgba(255, 255, 255, 0.6) 100%);
+            box-shadow: 
+                inset -2px -2px 5px rgba(139, 105, 20, 0.2),
+                inset 2px 2px 5px rgba(255, 255, 255, 0.8),
+                0 5px 15px rgba(139, 105, 20, 0.1);
+        }
+
+        .element-symbol .symbol {
+            font-size: 2.5rem;
+            color: #388e3c;
+            margin-bottom: 10px;
+            display: block;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+        }
+
+        .element-symbol .name {
+            font-size: 1.1rem;
+            color: #2e7d32;
+            font-weight: bold;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .info-card {
+                padding: 20px;
+            }
+            
+            .element-symbols {
+                gap: 20px;
+            }
+            
+            .element-symbol {
+                min-width: 100px;
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="bg-animation">
+        <!-- 3D Water and Earth elements will be generated by JavaScript -->
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Kapha Dosha</h1>
+            <p class="subtitle">The Energy of Structure and Stability</p>
+        </div>
+
+        <div class="content-grid">
+            <div class="info-card elements-section">
+                <div class="elements-content">
+                    <h2 class="elements-title">Elemental Constitution</h2>
+                    <p class="elements-desc">Kapha is composed of the fundamental elements of Water and Earth, governing all structure, stability, and lubrication in the body and mind.</p>
+                    <div class="element-symbols">
+                        <div class="element-symbol water-3d">
+                            <span class="symbol">💧</span>
+                            <span class="name">Water</span>
+                        </div>
+                        <div class="element-symbol earth-3d">
+                            <span class="symbol">🌍</span>
+                            <span class="name">Earth</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Physical Characteristics</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Body Structure</div>
+                            <div>Solid, heavy build with strong bones and well-developed muscles. Tendency toward larger frame and slower metabolism.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Skin & Hair</div>
+                            <div>Smooth, moist, and thick skin that is cool to touch. Hair is typically thick, wavy, lustrous, and oily.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Energy Patterns</div>
+                            <div>Steady, consistent energy with great endurance. Slow to start but maintains stamina for long periods.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Mental & Emotional Traits</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Mental Qualities</div>
+                            <div>Calm, steady thinking with excellent long-term memory. Methodical approach to learning and problem-solving.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Emotional Nature</div>
+                            <div>Loving, compassionate, and patient by nature. Can experience attachment, possessiveness, and depression when imbalanced.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Communication</div>
+                            <div>Slow, thoughtful speech with a melodious voice. Prefers to listen and speaks with consideration and depth.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h2 class="card-title">Functions in the Body</h2>
+                <div class="card-content">
+                    <div class="characteristics-grid">
+                        <div class="char-item">
+                            <div class="char-title">Structure & Support</div>
+                            <div>Provides structural integrity to bones, muscles, and tissues. Maintains body mass and physical strength.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Lubrication & Moisture</div>
+                            <div>Governs all body fluids including synovial fluid in joints, mucus membranes, and cellular hydration.</div>
+                        </div>
+                        <div class="char-item">
+                            <div class="char-title">Immunity & Protection</div>
+                            <div>Regulates immune system function, wound healing, and provides natural resistance to disease and infection.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Create animated background elements with 3D effects
+        function createBackgroundAnimation() {
+            const bgAnimation = document.querySelector('.bg-animation');
+            
+            // Create 3D water drops
+            for (let i = 0; i < 10; i++) {
+                const drop = document.createElement('div');
+                drop.className = 'water-drop-3d';
+                const size = Math.random() * 20 + 20;
+                drop.style.width = size + 'px';
+                drop.style.height = size * 1.3 + 'px';
+                drop.style.left = Math.random() * 100 + '%';
+                drop.style.top = Math.random() * 100 + '%';
+                drop.style.animationDelay = Math.random() * 12 + 's';
+                drop.style.animationDuration = (Math.random() * 6 + 12) + 's';
+                bgAnimation.appendChild(drop);
+            }
+            
+            // Create 3D earth stones
+            for (let i = 0; i < 8; i++) {
+                const stone = document.createElement('div');
+                stone.className = 'earth-stone-3d';
+                const size = Math.random() * 35 + 25;
+                stone.style.width = size + 'px';
+                stone.style.height = size + 'px';
+                stone.style.left = Math.random() * 100 + '%';
+                stone.style.top = Math.random() * 100 + '%';
+                stone.style.animationDelay = Math.random() * 18 + 's';
+                stone.style.animationDuration = (Math.random() * 8 + 18) + 's';
+                bgAnimation.appendChild(stone);
+            }
+            
+            // Create water ripples
+            for (let i = 0; i < 6; i++) {
+                const ripple = document.createElement('div');
+                ripple.className = 'water-ripple';
+                const size = Math.random() * 30 + 20;
+                ripple.style.width = size + 'px';
+                ripple.style.height = size + 'px';
+                ripple.style.left = Math.random() * 100 + '%';
+                ripple.style.top = Math.random() * 100 + '%';
+                ripple.style.animationDelay = Math.random() * 8 + 's';
+                ripple.style.animationDuration = (Math.random() * 4 + 8) + 's';
+                bgAnimation.appendChild(ripple);
+            }
+            
+            // Create earth crystals
+            for (let i = 0; i < 7; i++) {
+                const crystal = document.createElement('div');
+                crystal.className = 'earth-crystal';
+                const size = Math.random() * 25 + 15;
+                crystal.style.width = size + 'px';
+                crystal.style.height = size + 'px';
+                crystal.style.left = Math.random() * 100 + '%';
+                crystal.style.top = Math.random() * 100 + '%';
+                crystal.style.animationDelay = Math.random() * 15 + 's';
+                crystal.style.animationDuration = (Math.random() * 8 + 15) + 's';
+                bgAnimation.appendChild(crystal);
+            }
+            
+            // Create moss growth circles
+            for (let i = 0; i < 5; i++) {
+                const moss = document.createElement('div');
+                moss.className = 'moss-growth';
+                const size = Math.random() * 60 + 40;
+                moss.style.width = size + 'px';
+                moss.style.height = size + 'px';
+                moss.style.left = Math.random() * 100 + '%';
+                moss.style.top = Math.random() * 100 + '%';
+                moss.style.animationDelay = Math.random() * 20 + 's';
+                moss.style.animationDuration = (Math.random() * 10 + 20) + 's';
+                bgAnimation.appendChild(moss);
+            }
+        }
+        
+        // Initialize animation when page loads
+        document.addEventListener('DOMContentLoaded', createBackgroundAnimation);
+        
+        // Add smooth hover effects
+        document.querySelectorAll('.info-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+        
+        // Add 3D hover effect to element symbols
+        document.querySelectorAll('.element-symbol').forEach(symbol => {
+            symbol.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px) rotateX(5deg)';
+            });
+            
+            symbol.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) rotateX(0deg)';
+            });
+        });
+    </script>
+</body>
+</html>
